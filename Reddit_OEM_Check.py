@@ -15,7 +15,7 @@ class color:
    underline = '\033[4m'
    end = '\033[0m'
 
-r = praw.Reddit(user_agent='Reddit OEM Community Posts')
+r = praw.Reddit(user_agent='User-Agent: python:com.datacenterhandbook.Reddit OEM Community Check:v1.0 (by /u/drew_russell)')
 netapp = r.get_subreddit('netapp').get_new(limit=5)
 vmware = r.get_subreddit('vmware').get_new(limit=5)
 cisco = r.get_subreddit('cisco').get_new(limit=5)
@@ -76,8 +76,6 @@ if 'vmware' in oem_list:
 if 'cisco' in oem_list:
  browser.open_new_tab('https://www.reddit.com/r/cisco/new')
 
-print('')
-print('')
 
 
 
