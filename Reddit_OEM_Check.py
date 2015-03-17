@@ -3,6 +3,7 @@
 
 import praw
 import webbrowser
+import time
 
 class color:
    purple = '\033[95m'
@@ -43,24 +44,43 @@ new_posts(cisco)
 browser = webbrowser.get('safari')
 
 #Ask user if they want to go direclty to a subreddit from the terminal
-open = raw_input('Which subreddit would you like to visit? ').lower()
+number_to_open = raw_input('Enter the ' + color.bold + 'number ' + color.end + 'of subreddits you would like to visit: ').lower()
+print('')
 
-if open == 'netapp':
-    browser.open('https://www.reddit.com/r/netapp')
+#Verify that number to open is a number
+while number_to_open.isdigit() == False:
+    print('')
+    print('**** Error: Please enter a valid number ****')
+    print('')
+    number_to_open = raw_input('Enter the ' + color.bold + 'number ' + color.end + 'of subreddits you would like to visit: ').lower()
+    print('')
 
-elif open == 'vmware':
- browser.open('https://www.reddit.com/r/vmware')
+#If the user selects 0 close the application
+if number_to_open == 0:
+    exit()
 
-elif open == 'cisco':
- browser.open('https://www.reddit.com/r/cisco')
+#Create list to house which OEM subreddits the user would like to visit
+oem_list = []
 
-else:
-    print("Successfully checked all OEM subreddit's")
 
+#prompt user to enter which specific subreddits they'd like to open
+for x in range(0, int(number_to_open)):
+    oem_list.append(open)
+
+if 'netapp' in oem_list:
+    browser.open_new_tab('https://www.reddit.com/r/netapp/new')
+
+if 'vmware' in oem_list:
+ browser.open_new_tab('https://www.reddit.com/r/vmware/new')
+
+if 'cisco' in oem_list:
+ browser.open_new_tab('https://www.reddit.com/r/cisco/new')
 
 print('')
 print('')
-print('')
+
+
+
 
 
 
