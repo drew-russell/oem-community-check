@@ -56,25 +56,34 @@ while number_to_open.isdigit() == False:
     print('')
 
 #If the user selects 0 close the application
-if number_to_open == 0:
+if number_to_open == '0':
+    print('You have chosen not to visit any subreddits.')
+    print('')
     exit()
 
-#Create list to house which OEM subreddits the user would like to visit
-oem_list = []
-
-
-#prompt user to enter which specific subreddits they'd like to open
-for x in range(0, int(number_to_open)):
-    oem_list.append(open)
-
-if 'netapp' in oem_list:
+elif number_to_open == '3':
     browser.open_new_tab('https://www.reddit.com/r/netapp/new')
+    browser.open_new_tab('https://www.reddit.com/r/vmware/new')
+    browser.open_new_tab('https://www.reddit.com/r/cisco/new')
 
-if 'vmware' in oem_list:
- browser.open_new_tab('https://www.reddit.com/r/vmware/new')
+else:
 
-if 'cisco' in oem_list:
- browser.open_new_tab('https://www.reddit.com/r/cisco/new')
+    #Create list to house which OEM subreddits the user would like to visit
+    oem_list = []
+
+    #prompt user to enter which specific subreddits they'd like to open
+    for x in range(0, int(number_to_open)):
+        open = raw_input('OEM ' + str(x+1)+ ': ')
+        oem_list.append(open)
+
+    if 'netapp' in oem_list:
+        browser.open_new_tab('https://www.reddit.com/r/netapp/new')
+
+    if 'vmware' in oem_list:
+         browser.open_new_tab('https://www.reddit.com/r/vmware/new')
+
+    if 'cisco' in oem_list:
+        browser.open_new_tab('https://www.reddit.com/r/cisco/new')
 
 
 
