@@ -1,9 +1,7 @@
 #Reddit OEM Coummnity Check
 #Author: Drew Russell
 
-import praw
-import webbrowser
-import time
+import praw, webbrowser, sys
 
 class color:
    purple = '\033[95m'
@@ -40,8 +38,12 @@ new_posts(vmware)
 header('Cisco')
 new_posts(cisco)
 
-#Manually defined webbrowswer due to Chrome not being supported until 3.3
-browser = webbrowser.get('safari')
+#Define which browswer to open
+if sys.platform == 'darwin':
+    browser = webbrowser.get('macosx')
+elif sys.platform == 'win32':
+    browser = webbrowser.get('windows-default')
+
 
 #Ask user if they want to go direclty to a subreddit from the terminal
 number_to_open = raw_input('Enter the ' + color.bold + 'number ' + color.end + 'of subreddits you would like to visit: ').lower()
@@ -76,6 +78,13 @@ else:
         open = raw_input('OEM ' + str(x+1)+ ': ')
         oem_list.append(open)
 
+    # while open not in 'vmware' or 'cisco' or 'netapp':
+    #     print('')
+    #     print('**** Error: The OEM must be Cisco, NetApp, or VMware ****')
+    #     print('')
+    #     open = raw_input('OEM ' + str(x+1)+ ': ')
+    #     #oem_list.append(open)
+
     if 'netapp' in oem_list:
         browser.open_new_tab('https://www.reddit.com/r/netapp/new')
 
@@ -84,6 +93,8 @@ else:
 
     if 'cisco' in oem_list:
         browser.open_new_tab('https://www.reddit.com/r/cisco/new')
+
+
 
 
 
