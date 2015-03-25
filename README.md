@@ -3,4 +3,4 @@ Simple Python Script to check the NetApp, VMware, and Cisco Reddit communities f
 
 
 
-* Please note that Windows compatibility has to been verified *
+*Please note that Windows compatibility has to been verified*
