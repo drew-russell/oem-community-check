@@ -1,6 +1,5 @@
-#### Reddit OEM Subreddit Check ####
-Simple Python Script to check the NetApp, VMware, and Cisco Reddit communities for new posts.
+#### OEM Community Check ####
+Python Script that will crawl the NetApp, VMware, and Cisco (DC) Reddit and OEM Communities for new posts.
 
-
-
-*Please note that Windows compatibility has to been verified*
+*The VMware qwned community has not yet been added*
+*Windows compatibility has to been verified*
