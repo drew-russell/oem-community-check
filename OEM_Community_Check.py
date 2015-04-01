@@ -14,31 +14,8 @@ class color:
    underline = '\033[4m'
    end = '\033[0m'
 
-print('')
-print(color.bold + 'Executing Script. Please standby....' + color.end)
-
-
-
 #Reddit Variables
 r = praw.Reddit(user_agent='User-Agent: python:com.datacenterhandbook.Reddit OEM Community Check:v1.0 (by /u/drew_russell)')
-netapp = r.get_subreddit('netapp').get_new(limit=5)
-vmware = r.get_subreddit('vmware').get_new(limit=5)
-cisco = r.get_subreddit('cisco').get_new(limit=5)
-
-#OEM Owned Communities Variables
-#NetApp
-Community_NetApp = "https://community.netapp.com/t5/Forums/ct-p/forums"
-HTML_NetApp = requests.get(Community_NetApp)
-Soup_NetApp = BeautifulSoup(HTML_NetApp.content)
-Post_NetApp = Soup_NetApp.find_all("div", {"class": "custom-subject"})
-
-#Cisco
-Community_Cisco = "https://communities.cisco.com/community/technology/datacenter"
-HTML_Cisco = requests.get(Community_Cisco)
-Soup_Cisco = BeautifulSoup(HTML_Cisco.content)
-Post_Cisco = Soup_Cisco.find_all("td", 'jive-table-cell-title', limit=5)
-
-
 
 def new_posts(sub_reddit):
     print('')
@@ -47,47 +24,71 @@ def new_posts(sub_reddit):
     print ''
 
 def header(oem):
-    print(color.red + color.underline + oem + color.end)
+    print(color.bold + color.underline + oem + color.end)
     print('')
 
 def reddit():
     print(color.blue + 'Reddit' + color.end)
-    print('')
 
 def oem_community():
     print(color.blue + 'OEM Community' + color.end)
     print('')
 
-
+#region NetApp
 print('')
 header('NetApp')
 reddit()
+
+#Subreddit Posts
+netapp = r.get_subreddit('netapp').get_new(limit=5)
 new_posts(netapp)
+
+#NetApp OEM Community Variables
 oem_community()
+Community_NetApp = "https://community.netapp.com/t5/Forums/ct-p/forums"
+HTML_NetApp = requests.get(Community_NetApp)
+Soup_NetApp = BeautifulSoup(HTML_NetApp.content)
+Post_NetApp = Soup_NetApp.find_all("div", {"class": "custom-subject"})
 for post in Post_NetApp:
     print post.contents[0].text
 print('')
 
+#endregion
 
+#region VMware
 header('VMware')
 reddit()
+vmware = r.get_subreddit('vmware').get_new(limit=5)
 new_posts(vmware)
 oem_community()
+#endregion
 
+#region Cisco
 header('Cisco')
 reddit()
+
+#Subreddit
+cisco = r.get_subreddit('cisco').get_new(limit=5)
 new_posts(cisco)
+
+#Cisco Owned Community
 oem_community()
+Community_Cisco = "https://communities.cisco.com/community/technology/datacenter"
+HTML_Cisco = requests.get(Community_Cisco)
+Soup_Cisco = BeautifulSoup(HTML_Cisco.content)
+Post_Cisco = Soup_Cisco.find_all("td", 'jive-table-cell-title', limit=5)
 for post in Post_Cisco:
     print post.contents[1].text.strip()
 print('')
+#endregion
+
+#region Open in Browser
 
 #Define which browswer to open
 if sys.platform == 'darwin':
     browser = webbrowser.get('macosx')
 elif sys.platform == 'win32':
     browser = webbrowser.get('windows-default')
-
 
 #Ask user if they want to go direclty to a subreddit from the terminal
 number_to_open = raw_input('Enter the ' + color.bold + 'number ' + color.end + 'of OEMs you would like to visit: ').lower()
@@ -122,14 +123,14 @@ else:
     #prompt user to enter which specific subreddits they'd like to open
     for x in range(0, int(number_to_open)):
         open = raw_input('OEM ' + str(x+1)+ ': ')
+        while open not in ['vmware','cisco','netapp']:
+            print('')
+            print('**** Error: The OEM must be Cisco, NetApp, or VMware ****')
+            print('')
+            open = raw_input('OEM ' + str(x+1)+': ')
         oem_list.append(open)
 
-    # while open not in 'vmware' or 'cisco' or 'netapp':
-    #     print('')
-    #     print('**** Error: The OEM must be Cisco, NetApp, or VMware ****')
-    #     print('')
-    #     open = raw_input('OEM ' + str(x+1)+ ': ')
-    #     #oem_list.append(open)
+
 
     if 'netapp' in oem_list:
         browser.open_new_tab('https://www.reddit.com/r/netapp/new')
@@ -141,6 +142,8 @@ else:
     if 'cisco' in oem_list:
         browser.open_new_tab('https://www.reddit.com/r/cisco/new')
         browser.open_new_tab('https://communities.cisco.com/community/technology/datacenter')
+
+#endregion
 
 
 
