@@ -99,7 +99,7 @@ while number_to_open.isdigit() == False:
 
 #If the user selects 0 close the application
 if number_to_open == '0':
-    print('You have chosen not to visit any subreddits.')
+    print('You have chosen not to visit any OEM Communities.')
     print('')
     exit()
 
