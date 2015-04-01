@@ -14,6 +14,10 @@ class color:
    underline = '\033[4m'
    end = '\033[0m'
 
+print('')
+print(color.bold + 'Executing Script. Please standby....' + color.end)
+
+
 
 #Reddit Variables
 r = praw.Reddit(user_agent='User-Agent: python:com.datacenterhandbook.Reddit OEM Community Check:v1.0 (by /u/drew_russell)')
