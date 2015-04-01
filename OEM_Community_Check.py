@@ -107,6 +107,8 @@ elif number_to_open == '3':
     browser.open_new_tab('https://www.reddit.com/r/netapp/new')
     browser.open_new_tab('https://www.reddit.com/r/vmware/new')
     browser.open_new_tab('https://www.reddit.com/r/cisco/new')
+    browser.open_new_tab('https://community.netapp.com/')
+    browser.open_new_tab('https://www.reddit.com/r/cisco/new')
 
 else:
 
