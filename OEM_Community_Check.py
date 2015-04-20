@@ -4,6 +4,8 @@
 import praw, webbrowser, sys, requests
 from bs4 import BeautifulSoup
 
+
+
 class color:
    purple = '\033[95m'
    blue = '\033[94m'
@@ -14,13 +16,16 @@ class color:
    underline = '\033[4m'
    end = '\033[0m'
 
+print('')
+print(color.bold + 'Executing Script. Please standby...' + color.end)
+
 #Reddit Variables
 r = praw.Reddit(user_agent='User-Agent: python:com.datacenterhandbook.Reddit OEM Community Check:v1.0 (by /u/drew_russell)')
 
 def new_posts(sub_reddit):
     print('')
     for x in sub_reddit:
-        print x
+        print str(x).lstrip('0123456789:: ')
     print ''
 
 def header(oem):
@@ -112,7 +117,7 @@ elif number_to_open == '3':
     browser.open_new_tab('https://www.reddit.com/r/netapp/new')
     browser.open_new_tab('https://www.reddit.com/r/vmware/new')
     browser.open_new_tab('https://www.reddit.com/r/cisco/new')
-    browser.open_new_tab('https://community.netapp.com/')
+    browser.open_new_tab('https://community.netapp.com/t5/Forums/ct-p/forums')
     browser.open_new_tab('https://www.reddit.com/r/cisco/new')
 
 else:
@@ -134,7 +139,7 @@ else:
 
     if 'netapp' in oem_list:
         browser.open_new_tab('https://www.reddit.com/r/netapp/new')
-        browser.open_new_tab('https://community.netapp.com/')
+        browser.open_new_tab('https://community.netapp.com/t5/Forums/ct-p/forums')
 
     if 'vmware' in oem_list:
          browser.open_new_tab('https://www.reddit.com/r/vmware/new')
