@@ -25,7 +25,7 @@ r = praw.Reddit(user_agent='User-Agent: python:com.datacenterhandbook.Reddit OEM
 def new_posts(sub_reddit):
     print('')
     for x in sub_reddit:
-        print str(x).lstrip('0123456789:: ')
+        print '- ' + str(x).lstrip('0123456789:: ')
     print ''
 
 def header(oem):
@@ -55,7 +55,7 @@ HTML_NetApp = requests.get(Community_NetApp)
 Soup_NetApp = BeautifulSoup(HTML_NetApp.content)
 Post_NetApp = Soup_NetApp.find_all("div", {"class": "custom-subject"})
 for post in Post_NetApp:
-    print post.contents[0].text
+    print '- ' + post.contents[0].text
 print('')
 
 #endregion
@@ -83,7 +83,7 @@ HTML_Cisco = requests.get(Community_Cisco)
 Soup_Cisco = BeautifulSoup(HTML_Cisco.content)
 Post_Cisco = Soup_Cisco.find_all("td", 'jive-table-cell-title', limit=5)
 for post in Post_Cisco:
-    print post.contents[1].text.strip()
+    print '- ' + post.contents[1].text.strip()
 print('')
 #endregion
 
