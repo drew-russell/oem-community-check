@@ -29,14 +29,14 @@ def new_posts(sub_reddit):
     print ''
 
 def header(oem):
-    print(color.bold + color.underline + oem + color.end)
+    print(color.bold + '*** ' + oem + ' ***' + color.end)
     print('')
 
 def reddit():
-    print(color.blue + 'Reddit' + color.end)
+    print(color.blue + color.bold + 'Reddit' + color.end)
 
 def oem_community():
-    print(color.blue + 'OEM Community' + color.end)
+    print(color.blue + color.bold + 'OEM Community' + color.end)
     print('')
 
 #region NetApp
@@ -65,7 +65,7 @@ header('VMware')
 reddit()
 vmware = r.get_subreddit('vmware').get_new(limit=5)
 new_posts(vmware)
-oem_community()
+
 #endregion
 
 #region Cisco
