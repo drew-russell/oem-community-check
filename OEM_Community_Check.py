@@ -1,7 +1,7 @@
 #Reddit OEM Coummnity Check
 #Author: Drew Russell
 
-import praw, webbrowser, sys, requests
+import praw, webbrowser, sys, requests, os, time
 from bs4 import BeautifulSoup
 
 
@@ -29,7 +29,7 @@ def new_posts(sub_reddit):
     print ''
 
 def header(oem):
-    print(color.bold + '*** ' + oem + ' ***' + color.end)
+    print(color.bold + '***** ' + oem + ' *****' + color.end)
     print('')
 
 def reddit():
@@ -111,7 +111,14 @@ while number_to_open.isdigit() == False:
 if number_to_open == '0':
     print('You have chosen not to visit any OEM Communities.')
     print('')
+    print 'Closing iTerm...'
+    print ''
+    time.sleep(.5)
+    #Kill iTerm - if you use a different command line utility simply change iTerm to the name of the application
+    os.system("killall iTerm")
     exit()
+
+
 
 elif number_to_open == '3':
     browser.open_new_tab('https://www.reddit.com/r/netapp/new')
